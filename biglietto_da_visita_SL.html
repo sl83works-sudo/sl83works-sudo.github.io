@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salvo Landro</title>
+
+<!-- ============================================================
+  PERSONALIZZAZIONE — modifica solo questo blocco
+  ============================================================ -->
+<script>
+const PROFILO = {
+  nome:       "Salvo Landro",
+  nomeCompleto: "Salvatore Landro",
+  titolo:     "Project Manager",
+  tag:        "Facility Management & Minor Construction",
+  bio:        "Oltre la laurea specialistica in direzione aziendale, ho conseguito una seconda laurea in ingegneria civile e lavoro nel mondo del facility management come project e quality control manager. Per deformazione professionale solo focalizzato costantemente su business strategy and management, problem solving e customer satisfaction, ma continuo a curare svariate passioni personali tra cui quelle per la fotografia, il fai da te creativo, le innovation technologies e il mare.",
+
+      foto: "foto 1.png",
+
+  // Competenze: ogni voce ha un'etichetta (label) e un testo descrittivo (dettaglio).
+  // Il dettaglio appare nel banner quando si clicca la pill.
+  // Puoi aggiungere, rimuovere o modificare le voci liberamente.
+  competenze: [
+    {
+      label:    "Project Management",
+      dettaglio: "Coordinamento di progetti complessi dalla fase di pianificazione alla consegna finale, con gestione di risorse, scadenze e stakeholder. Esperienza con metodologie PMI e strumenti di reporting avanzato"
+    },
+    {
+      label:    "Facility Management",
+      dettaglio: "Supervisione e ottimizzazione della gestione degli spazi, degli impianti e dei servizi ausiliari su siti multi-sede, garantendo continuità operativa e conformità normativa (ITA/USA)"
+    },
+    {
+      label:    "Quality Control Management",
+      dettaglio: "Certificazione U.S. Army Corps of Engineers: Construction Quality Management for Contractors. Produzione, implementazione e supervisione di quality control plan, inclusa la fase ispettiva e reportistica del processo di controllo qualità per l'intera durata della commessa"
+    },
+    {
+      label:    "Safety Management",
+      dettaglio: "Certificazione OSHAcademy: 40-hour EM 385-1-1 Construction Safety Hazard Awareness for Contractors. Sopralluoghi periodici e gestione della documentazione di sicurezza per cantieri temporanei e permanenti"
+    },
+    {
+      label:    "NATO Contracts",
+      dettaglio: "Esperienza più che decennale nel monitoraggio e gestione di contratti di appalto e fornitura di servizi su infrastrutture militari NATO in Italia, con piena conformità ai requisiti di sicurezza e accreditamento richiesti. Gestione di molteplici forme di commesse"
+    },
+    {
+      label:    "Gestione subappalti",
+      dettaglio: "Negoziazione, stipula e monitoraggio di contratti di subappalto e fornitura. Gestione delle varianti, delle riserve e dei SAL con attenzione alla riduzione del rischio contrattuale"
+    },
+    {
+      label:    "Sopralluoghi e site surveys",
+      dettaglio: "Pianificazione ed esecuzione di ispezioni tecniche su siti operativi. Redazione di verbali, checklist e reportistica fotografica a supporto della direzione lavori"
+    }
+  ],
+
+  // Social: inserisci il tuo URL oppure "" per nascondere il link
+  social: {
+    linkedin:  "https://www.linkedin.com/in/salvolandro/",
+    instagram: "https://www.instagram.com/salvo.landro/",
+    facebook:  "https://www.facebook.com/salvolandro",
+    pinterest: "https://it.pinterest.com/salan83/"
+  }
+};
+</script>
+<!-- ============================================================
+  FINE PERSONALIZZAZIONE
+  ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:       #F7F5F1;
+  --surface:  #FFFFFF;
+  --ink:      #1A1916;
+  --muted:    #888580;
+  --accent:   #8B6D3F;
+  --accent-l: #C8A96E;
+  --line:     rgba(26,25,22,0.1);
+  --pill-bg:  #EFECE6;
+  --pill-fg:  #6B5030;
+}
+
+html{ scroll-behavior:smooth; }
+body{
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layout 50/50 */
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* Pannello foto */
+.panel-foto{
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+.panel-foto img{
+  width:100%; height:100%;
+  object-fit:cover; object-position:center top;
+  display:block;
+  filter:grayscale(15%) contrast(1.04);
+  transition:filter 0.5s;
+}
+.panel-foto:hover img{ filter:grayscale(0%) contrast(1); }
+.foto-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom,transparent 40%,rgba(247,245,241,0.72) 80%,rgba(247,245,241,0.96) 100%);
+}
+.foto-nome{
+  position:absolute; bottom:2.8rem;
+  left:2.4rem; right:2.4rem;
+}
+.foto-nome h1{
+  font-family:'Syne',sans-serif;
+  font-size:2.6rem; font-weight:800;
+  line-height:1.05; letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.accent-line{ width:44px; height:3px; background:var(--accent-l); margin:0.8rem 0; }
+.foto-nome .ruolo{
+  font-size:0.7rem; letter-spacing:0.22em;
+  text-transform:uppercase; color:var(--accent); font-weight:500;
+}
+
+/* Pannello contenuto */
+.panel-content{
+  background:var(--surface);
+  padding:5rem 3.5rem 4rem;
+  display:flex; flex-direction:column; gap:3rem;
+  border-left:1px solid var(--line);
+}
+.section-tag{
+  font-size:0.75rem; letter-spacing:0.24em;
+  text-transform:uppercase; color:var(--accent);
+  margin-bottom:0.85rem; font-weight:500;
+}
+.bio-text{
+  font-size:1.0rem; line-height:1.9;
+  color:var(--muted); font-weight:300;
+}
+.divider{ width:100%; height:1px; background:var(--line); }
+
+/* Pills */
+.pill-grid{ display:flex; flex-wrap:wrap; gap:8px; margin-top:0.4rem; }
+.pill{
+  background:var(--pill-bg); color:var(--pill-fg);
+  font-size:0.67rem; letter-spacing:0.11em; text-transform:uppercase;
+  padding:6px 15px; border-radius:100px;
+  border:1px solid rgba(139,109,63,0.2);
+  font-weight:500; cursor:pointer;
+  transition:background 0.2s, border-color 0.2s, transform 0.15s;
+  user-select:none;
+}
+.pill:hover{ background:#E8E3D9; border-color:var(--accent-l); }
+.pill:active{ transform:scale(0.96); }
+.pill.active{
+  background:var(--accent);
+  color:#FFF8EE;
+  border-color:var(--accent);
+}
+
+/* Banner dettaglio skill */
+.skill-banner{
+  display:none;
+  margin-top:0.9rem;
+  background:var(--bg);
+  border:1px solid rgba(139,109,63,0.25);
+  border-left:3px solid var(--accent-l);
+  border-radius:6px;
+  padding:1rem 1.2rem;
+  animation:bannerIn 0.22s ease both;
+}
+.skill-banner.visible{ display:block; }
+@keyframes bannerIn{
+  from{ opacity:0; transform:translateY(-6px); }
+  to{   opacity:1; transform:translateY(0); }
+}
+.banner-label{
+  font-size:0.65rem; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--accent);
+  font-weight:500; margin-bottom:0.45rem;
+}
+.banner-testo{
+  font-size:0.88rem; line-height:1.75;
+  color:var(--muted); font-weight:300;
+}
+.banner-close{
+  float:right; margin-left:0.6rem; margin-top:-2px;
+  background:none; border:none; cursor:pointer;
+  font-size:0.95rem; color:var(--muted);
+  line-height:1; padding:2px 4px;
+  transition:color 0.15s;
+}
+.banner-close:hover{ color:var(--ink); }
+
+/* Social */
+.social-link{
+  display:flex; align-items:center; gap:1.1rem;
+  padding:0.95rem 0; border-bottom:1px solid var(--line);
+  text-decoration:none; color:var(--muted);
+  transition:color 0.2s, padding-left 0.2s;
+  position:relative; overflow:hidden;
+}
+.social-link::before{
+  content:''; position:absolute;
+  left:-100%; top:0; width:100%; height:100%;
+  background:#F3EFE8; transition:left 0.22s ease; z-index:0;
+}
+.social-link:hover::before{ left:0; }
+.social-link:hover{ color:var(--ink); padding-left:0.45rem; }
+.social-link svg{
+  width:16px; height:16px; fill:currentColor;
+  flex-shrink:0; position:relative; z-index:1;
+}
+.social-label{
+  font-size:0.78rem; letter-spacing:0.14em;
+  text-transform:uppercase; font-weight:500;
+  position:relative; z-index:1;
+}
+.social-arrow{
+  margin-left:auto; font-size:0.9rem;
+  opacity:0; transform:translateX(-6px);
+  transition:opacity 0.2s, transform 0.2s;
+  position:relative; z-index:1; color:var(--accent);
+}
+.social-link:hover .social-arrow{ opacity:1; transform:translateX(0); }
+
+/* Footer */
+.footer{
+  margin-top:auto;
+  font-size:0.63rem; letter-spacing:0.1em;
+  text-transform:uppercase; color:#ccc;
+}
+
+/* Animazioni entrata */
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(20px); }
+  to{   opacity:1; transform:translateY(0); }
+}
+.a1{ animation:fadeUp 0.65s ease 0.05s both; }
+.a2{ animation:fadeUp 0.65s ease 0.18s both; }
+.a3{ animation:fadeUp 0.65s ease 0.30s both; }
+.a4{ animation:fadeUp 0.65s ease 0.42s both; }
+
+/* Responsive */
+@media(max-width:900px){
+  .wrapper{ grid-template-columns:1fr; }
+  .panel-foto{
+    position:relative; height:75vw;
+    max-height:460px; min-height:280px;
+  }
+  .foto-nome h1{ font-size:2rem; }
+  .foto-nome{ bottom:1.8rem; left:1.5rem; right:1.5rem; }
+  .panel-content{
+    padding:2.5rem 1.5rem 3rem; gap:2.5rem;
+    border-left:none; border-top:1px solid var(--line);
+  }
+}
+@media(max-width:480px){
+  .foto-nome h1{ font-size:1.65rem; }
+  .bio-text{ font-size:0.92rem; }
+  .panel-content{ padding:2rem 1.2rem 2.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Colonna sinistra: foto -->
+  <div class="panel-foto a1">
+    <img id="el-foto" src="" alt="Foto profilo">
+    <div class="foto-overlay"></div>
+    <div class="foto-nome">
+      <h1 id="el-nome"></h1>
+      <div class="accent-line"></div>
+      <p class="ruolo" id="el-titolo"></p>
+    </div>
+  </div>
+
+  <!-- Colonna destra: contenuto -->
+  <div class="panel-content">
+
+    <div class="a2">
+      <p class="section-tag" id="el-tag"></p>
+      <p class="bio-text" id="el-bio"></p>
+    </div>
+
+    <div class="divider a2"></div>
+
+    <div class="a3">
+      <p class="section-tag">Competenze</p>
+      <div class="pill-grid" id="el-pills"></div>
+      <!-- Il banner viene inserito qui via JS -->
+      <div class="skill-banner" id="skill-banner">
+        <button class="banner-close" id="banner-close" aria-label="Chiudi">✕</button>
+        <p class="banner-label" id="banner-label"></p>
+        <p class="banner-testo" id="banner-testo"></p>
+      </div>
+    </div>
+
+    <div class="divider a3"></div>
+
+    <div class="a4">
+      <p class="section-tag">Contatti &amp; Social</p>
+      <div id="el-social">
+
+        <a class="social-link" id="soc-linkedin" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <span class="social-label">LinkedIn</span>
+          <span class="social-arrow">→</span>
+        </a>
+
+        <a class="social-link" id="soc-instagram" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          <span class="social-label">Instagram</span>
+          <span class="social-arrow">→</span>
+        </a>
+
+        <a class="social-link" id="soc-facebook" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <span class="social-label">Facebook</span>
+          <span class="social-arrow">→</span>
+        </a>
+
+        <a class="social-link" id="soc-pinterest" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          <span class="social-label">Pinterest</span>
+          <span class="social-arrow">→</span>
+        </a>
+
+      </div>
+    </div>
+
+    <p class="footer a4">© <span id="el-year"></span> &nbsp;·&nbsp; <span id="el-footer-nome"></span></p>
+  </div>
+</div>
+
+<script>
+// Popola dati base
+document.getElementById('el-foto').src                = PROFILO.foto;
+document.getElementById('el-nome').textContent        = PROFILO.nome;
+document.getElementById('el-titolo').textContent      = PROFILO.titolo;
+document.getElementById('el-tag').textContent         = PROFILO.tag;
+document.getElementById('el-bio').textContent         = PROFILO.bio;
+document.getElementById('el-footer-nome').textContent = PROFILO.nomeCompleto;
+document.getElementById('el-year').textContent        = new Date().getFullYear();
+
+// Banner elementi
+var banner      = document.getElementById('skill-banner');
+var bannerLabel = document.getElementById('banner-label');
+var bannerTesto = document.getElementById('banner-testo');
+var bannerClose = document.getElementById('banner-close');
+var activePill  = null;
+
+// Genera pills
+var pillsContainer = document.getElementById('el-pills');
+PROFILO.competenze.forEach(function(comp) {
+  var pill = document.createElement('span');
+  pill.className   = 'pill';
+  pill.textContent = comp.label;
+
+  pill.addEventListener('click', function() {
+    // Stessa pill → chiudi
+    if (activePill === pill) {
+      closeBanner();
+      return;
+    }
+    // Altra pill → aggiorna
+    if (activePill) activePill.classList.remove('active');
+    activePill = pill;
+    pill.classList.add('active');
+
+    bannerLabel.textContent = comp.label;
+    bannerTesto.textContent = comp.dettaglio;
+
+    // Forza re-animazione
+    banner.classList.remove('visible');
+    void banner.offsetWidth;
+    banner.classList.add('visible');
+  });
+
+  pillsContainer.appendChild(pill);
+});
+
+function closeBanner() {
+  banner.classList.remove('visible');
+  if (activePill) { activePill.classList.remove('active'); activePill = null; }
+}
+
+bannerClose.addEventListener('click', closeBanner);
+
+// Social links
+function setLink(id, url) {
+  var el = document.getElementById(id);
+  if (!url) { el.style.display = 'none'; return; }
+  el.href = url;
+}
+setLink('soc-linkedin',  PROFILO.social.linkedin);
+setLink('soc-instagram', PROFILO.social.instagram);
+setLink('soc-facebook',  PROFILO.social.facebook);
+setLink('soc-pinterest', PROFILO.social.pinterest);
+</script>
+</body>
+</html>
